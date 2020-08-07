@@ -1,6 +1,6 @@
 import {UserRoleType} from '@app/panel/domain/user-role-type';
 
-const baseUrl = 'http://185.185.126.15:8020';
+const baseUrl = 'http://185.185.126.15:8080';
 export const environment = {
   production: true,
   config: {
@@ -18,7 +18,7 @@ export const environment = {
         token: baseUrl + '/engine/oauth/token'
       },
       dashboard: {
-        get: (currency: string) => `/engine/dashboard/volumes/${currency}`,
+        get: (currency: string) => baseUrl + `/engine/dashboard/volumes/${currency}`,
         topTerminals: baseUrl + '/engine/dashboard/terminals',
         topMerchants: baseUrl + '/engine/dashboard/merchants',
         topContracts: baseUrl + '/engine/dashboard/contracts'
@@ -34,8 +34,8 @@ export const environment = {
         base: baseUrl + '/engine/users/pages',
         find: baseUrl + '/engine/users/find',
         create: baseUrl + '/engine/users/create',
-        get: (id: number) => `/engine/users/${id}`,
-        persist: (id: number) => `/engine/users/${id}`,
+        get: (id: number) => baseUrl + `/engine/users/${id}`,
+        persist: (id: number) => baseUrl + `/engine/users/${id}`,
         export: baseUrl + '/engine/users/export'
       },
       downloads: {
