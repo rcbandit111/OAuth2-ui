@@ -1,0 +1,21 @@
+.status {
+  -webkit-animation-name: fadeUp;
+  animation-name: fadeUp;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  .section {
+    border-radius: 6px;
+    background: white;
+    margin-bottom: 20px;
+  }
+}
+
+.form-group {
+  margin-bottom: 0;
+  select {
+    margin-left: 10px;
+    width: auto;
+    min-width: 200px;
+    display: inline-block;
+  }
+}

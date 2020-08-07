@@ -1,0 +1,19 @@
+.grid-wrapper {
+  display: grid;
+
+  grid-column-gap: 30px;
+  grid-row-gap: 15px;
+  grid-template-columns: repeat(6, 1fr);
+
+  grid-template-areas:
+    "chart-1 chart-1 chart-1 chart-1 chart-1 chart-1";
+}
+
+.chart-1 {
+  grid-area: chart-1;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+

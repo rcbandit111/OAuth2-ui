@@ -1,0 +1,182 @@
+<div class="element-actions">
+  <a class="btn btn-primary mr-2 mb-2" routerLink="/panel/users/new">
+    <i class="os-icon os-icon-ui-22"></i>
+    New Admin User
+  </a>
+
+  <!-- Dropdown example -->
+  <div class="btn-group mb-2">
+    <button aria-expanded="false" aria-haspopup="true" class="btn btn-secondary dropdown-toggle" style="min-width: 140px"
+      data-toggle="dropdown" id="dropdownMenu" type="button">
+      Export
+    </button>
+
+    <div aria-labelledby="dropdownMenu" class="dropdown-menu">
+      <button class="dropdown-item" (click)="export()">CSV</button>
+      <button class="dropdown-item" (click)="export()">XLS</button>
+    </div>
+  </div>
+</div>
+
+<h5 class="element-header">Admin Users</h5>
+
+<div class="element-box">
+  <div class="search-wrapper">
+    <app-accordion>
+      <div accordion-el="title">
+        <i class="fa fa-search"></i>
+        Search
+      </div>
+      <div accordion-el="content">
+        <form [formGroup]="formGroup" class="container search-container" (submit)="search()">
+
+          <div class="row">
+            <div class="col-sm-2 search-titles">Search</div>
+            <div class="col-sm-4">
+              <input type="text" class="form-control search-text" formControlName="searchText"
+                     placeholder="Search..." />
+            </div>
+            <div class="col-sm-6"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-2 search-titles"></div>
+            <div class="col-sm-10">
+              <div class="btn-group row">
+                <label class="radio">
+                  <input type="radio" formControlName="searchType" name="searchType" value="all"
+                         (change)="onSearchTypeChange($event.target.value)" />
+                  <span>All</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" formControlName="searchType" name="searchType" value="login"
+                         (change)="onSearchTypeChange($event.target.value)" />
+                  <span>Login</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" formControlName="searchType" name="searchType" value="email"
+                         (change)="onSearchTypeChange($event.target.value)" />
+                  <span>Email</span>
+                </label>
+                <label class="radio">
+                  <input type="radio" formControlName="searchType" name="searchType" value="role"
+                         (change)="onSearchTypeChange($event.target.value)" />
+                  <span>Role</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-success btn-block" type="submit">Search</button>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-default btn-block" type="button" (click)="clear()">Reset</button>
+            </div>
+            <div class="col-sm-6"></div>
+          </div>
+
+        </form>
+        <!--<form [formGroup]="formGroup" (ngSubmit)="search()" class="row">-->
+          <!--<div class="col-sm-2">-->
+            <!--<input type="text" placeholder="User ID" class="form-control" formControlName="id">-->
+          <!--</div>-->
+
+          <!--<div class="col-sm-2">-->
+            <!--<input type="text" placeholder="User name" class="form-control" formControlName="name">-->
+          <!--</div>-->
+
+          <!--<div class="col-sm-2">-->
+            <!--<app-date-picker placeholder="Date from" formControlName="from"></app-date-picker>-->
+          <!--</div>-->
+
+          <!--<div class="col-sm-2">-->
+            <!--<app-date-picker placeholder="Date to" formControlName="to"></app-date-picker>-->
+          <!--</div>-->
+
+          <!--<div class="col-sm-4 d-flex align-items-center justify-content-end">-->
+            <!--<button class="btn btn-primary" type="submit">Filter</button>-->
+            <!--<button class="btn btn-secondary" type="button" (click)="clear()">Reset</button>-->
+          <!--</div>-->
+
+        <!--</form>-->
+      </div>
+    </app-accordion>
+  </div>
+
+  <div class="table-responsive">
+    <div class="dataTables_wrapper container-fluid dt-bootstrap4">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="dataTables_paginate paging_simple_numbers">
+            <app-pagination [pagination]="pagination" (pageChange)="changePage($event)"></app-pagination>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <table class="table table-striped table-lightfont dataTable" role="grid">
+            <thead>
+              <tr role="row">
+                <th scope="col">#</th>
+                <th scope="col">Action</th>
+                <th scope="col">Login</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Enabled</th>
+                <th scope="col">Last Activity</th>
+                <th scope="col">Created at</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; let ind = index;" role="row" [ngClass]="{odd: ind % 2 === 0, even: ind % 2 !== 0}">
+                <td scope="row">{{user.id}}</td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false">
+                      actions
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" [routerLink]="['/panel/users/edit', user.id]">Edit</a>
+                      <a class="dropdown-item" [routerLink]="['/panel/users', user.id]">View</a>
+                    </div>
+                  </div>
+
+                </td>
+                <td>
+                  <div *ngIf="highlight('login') && user.login" ngxTextHighlight [content]="user.login"
+                       [searchTerm]="searchText" [caseSensitive]="true"></div>
+                  <div *ngIf="!highlight('login') || !user.login">{{user.login}}</div>
+                </td>
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{ adminRoleType2LabelMapping[user.role] }}</td>
+                <td>
+                  <span *ngIf="user.enabled" class="badge badge-success">Enabled</span>
+                  <span *ngIf="!user.enabled" class="badge badge-dark">Disabled</span>
+                </td>
+                <td>{{user.lastActivityAt | date: 'yyyy-MM-dd HH:mm'}}</td>
+                <td>{{user.createdAt | date: 'yyyy-MM-dd HH:mm'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="dataTables_paginate paging_simple_numbers">
+            <app-pagination [pagination]="pagination" (pageChange)="changePage($event)"></app-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

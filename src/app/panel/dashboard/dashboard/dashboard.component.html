@@ -1,0 +1,46 @@
+<div class="element-wrapper">
+
+  <h5 class="element-header">Dashboard</h5>
+
+  <div class="element-content">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="element-box">
+          <app-bar-chart [volumes]="volumes" [currency]="currency" (currencyChanged)="getVolumes($event)">
+          </app-bar-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="status">
+    <div class="section">
+      <app-accordion>
+        <div accordion-el="title">
+          <div class="row form-group">
+            <div class="col-sm-12">
+              <label>
+                <i class="fa fa-bolt"></i>
+                Status
+              </label>
+              <select class="form-control" [(ngModel)]="currency" (change)="filterByCurrency($event?.target?.value)"
+                (click)="$event.stopPropagation();">
+                <option value="active">Active</option>
+                <option value="blocked">Blocked</option>
+              </select></div>
+          </div>
+        </div>
+        <div accordion-el="content">
+          <div class="table-responsive">
+            <div class="dataTables_wrapper container-fluid dt-bootstrap4">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <div class="dataTables_length">Stats last 60 minutes</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-accordion>
+    </div>
+  </div>
+</div>

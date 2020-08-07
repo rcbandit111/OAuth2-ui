@@ -1,0 +1,22 @@
+<div class="row form-group">
+  <div class="col-sm-12">
+    <label for="inputEmail3">
+      <i class="fa fa-bar-chart"></i> Daily Volumes
+    </label>
+    <select class="form-control" [(ngModel)]="currency" (change)="filterByCurrency($event?.target?.value)">
+      <option value="active">Active</option>
+      <option value="blocked">Blocked</option>
+    </select>
+  </div>
+
+</div>
+<div class="daily-volumes-chart">
+  <div class="summary">
+    <span class="total-summary"><span class="font-weight-bold">Total:</span> {{ total | currency:currency }}</span>
+    <span class="range-summary"><span class="font-weight-bold">Range:</span> {{ from }} - {{ to }}</span>
+  </div>
+  <chart type="bar" [data]="barChart" [options]="chartOptions"></chart>
+</div>
+
+<app-range-slide-picker *ngIf="rangeSliderOptions && volumes.length" [options]="rangeSliderOptions"
+  (valueChanges)="onSliderChanged($event)"></app-range-slide-picker>

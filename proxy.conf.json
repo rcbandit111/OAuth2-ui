@@ -1,0 +1,9 @@
+{
+  "/engine/*": {
+    "target": "http://localhost:8080",
+    "port": 4200,
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

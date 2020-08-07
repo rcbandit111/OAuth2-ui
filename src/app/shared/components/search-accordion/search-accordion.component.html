@@ -1,0 +1,14 @@
+<div class="accordion-component" [ngClass]="{open: !collapsed}" [ngStyle]="{'background': backgroundStyle}">
+  <header (click)="toggle()">
+    <div class="title">
+      <ng-content select="[accordion-el=title]"></ng-content>
+    </div>
+
+    <div class="arrow">
+      <i class="fa fa-angle-down"></i>
+    </div>
+  </header>
+  <section>
+    <ng-content select="[accordion-el=content]"></ng-content>
+  </section>
+</div>
