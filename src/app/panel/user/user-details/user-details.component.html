@@ -1,0 +1,25 @@
+<div class="element-actions">
+  <a class="btn btn-secondary mr-2 mb-2" [routerLink]="['/panel/users/edit', user.id]">
+    Edit Admin User
+  </a>
+</div>
+
+<h5 class="element-header">Admin User #{{user?.id}}</h5>
+
+<div class="element-box">
+  <div class="details-wrapper">
+    <h4>
+      {{user.firstName}} {{user.lastName}}
+    </h4>
+
+    <div class="activity">
+      <span *ngIf="user.lastActivityAt">last activity - {{user.lastActivityAt | date: 'yyyy-MM-dd HH:mm'}}</span>
+    </div>
+
+    <p><b class="label">Login:</b> {{user.login}}</p>
+    <p><b class="label">Email:</b> {{user.email}}</p>
+    <p><b class="label">Created:</b> {{user.createdAt | date: 'yyyy-MM-dd HH:mm'}}</p>
+    <p><b class="label">Enabled:</b> {{user.enabled ? 'Yes' : 'No'}}</p>
+    <p><b class="label">Role:</b> {{user.role}}</p>
+  </div>
+</div>

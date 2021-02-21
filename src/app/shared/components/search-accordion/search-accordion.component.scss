@@ -1,0 +1,67 @@
+:host {
+  width: 100%;
+}
+
+.accordion-component {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid rgba(126, 142, 177, 0.12);
+  box-shadow: 0 2px 4px rgba(126, 142, 177, 0.12);
+
+  &.open {
+    header {
+      .arrow > * {
+        transform: rotate(180deg);
+      }
+    }
+
+    section {
+      max-height: none;
+      min-height: 30px;
+      padding: 0.5em 10px;
+      ::ng-deep *[accordion-el="content"] {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(126, 142, 177, 0.12);
+
+    .title {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      margin: 0;
+      font-size: 16px;
+
+      .fa {
+        margin-right: 10px;
+      }
+
+    }
+
+    .arrow {
+      flex: 0 0 20px;
+      font-size: 20px;
+
+      & > * {
+        transition: all 200ms ease-out;
+      }
+    }
+  }
+
+  section {
+    display: flex;
+    max-height: 0;
+    padding: 0 10px;
+    overflow: hidden;
+    transition: all 200ms ease-out;
+  }
+}

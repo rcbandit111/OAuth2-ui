@@ -1,0 +1,17 @@
+<ul class="pagination" *ngIf="pagination.total">
+  <li class="paginate_button page-item previous"
+       [ngClass]="{disabled: previous === null}">
+    <a class="page-link" (click)="onClickButton(previous)">Previous</a>
+  </li>
+
+  <li class="paginate_button page-item"
+       *ngFor="let btn of buttons; let ind = index"
+       [ngClass]="{active: btn == pagination.current, first: ind === 0}">
+    <a class="page-link" (click)="onClickButton(btn)">{{btn}}</a>
+  </li>
+
+  <div class="paginate_button page-item next"
+       [ngClass]="{disabled: next === null}">
+    <a class="page-link" (click)="onClickButton(next)">Next</a>
+  </div>
+</ul>

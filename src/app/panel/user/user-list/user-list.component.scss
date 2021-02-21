@@ -1,0 +1,39 @@
+.search-wrapper {
+  margin-bottom: 15px;
+}
+
+.search-titles {
+  text-align: right;
+  font-weight: 700;
+  padding-top: 8px;
+}
+
+.row{
+  margin-bottom: 10px;
+}
+
+.row:first-child {
+  margin-top: 10px;
+}
+
+.search-text {
+  margin-bottom: 10px;
+}
+
+.btn-group.row {
+  margin: 0px;
+  margin-top: 2px;
+}
+
+label.radio ~ label.radio {
+  padding-left: 16px;
+}
+
+label.radio > input {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.btn-default{
+  border-color:#dde2ec;
+}

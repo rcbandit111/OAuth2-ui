@@ -1,0 +1,74 @@
+<h5 class="element-header">Edit Admin User</h5>
+
+<div class="element-box">
+  <div class="row justify-content-center">
+    <div class="col-sm-4">
+      <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <div class="form-group" [ngClass]="errorClasses('login')">
+          <label>Login</label>
+          <input type="text" class="form-control" formControlName="login">
+          <div class="help-block form-text with-errors form-control-feedback" *ngIf="controlHasErrors('login')">
+            {{controlValidateMessage('login')}}
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="errorClasses('email')">
+          <label>Email</label>
+          <input type="text" class="form-control" formControlName="email">
+          <div class="help-block form-text with-errors form-control-feedback" *ngIf="controlHasErrors('email')">
+            {{controlValidateMessage('email')}}
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="errorClasses('firstName')">
+          <label>First Name</label>
+          <input type="text" class="form-control" formControlName="firstName">
+          <div class="help-block form-text with-errors form-control-feedback" *ngIf="controlHasErrors('firstName')">
+            {{controlValidateMessage('firstName')}}
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="errorClasses('lastName')">
+          <label>Last Name</label>
+          <input type="text" class="form-control" formControlName="lastName">
+          <div class="help-block form-text with-errors form-control-feedback" *ngIf="controlHasErrors('lastName')">
+            {{controlValidateMessage('lastName')}}
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="errorClasses('role')">
+          <div class="input-group-prepend">
+            <label>Role</label>
+          </div>
+          <select class="custom-select" formControlName="role">
+            <!--<option selected></option>-->
+            <option [value]="roleType" *ngFor="let roleType of roleTypes">{{ adminRoleType2LabelMapping[roleType] }}</option>
+            <div class="help-block form-text with-errors form-control-feedback" *ngIf="controlHasErrors('role')">
+              {{controlValidateMessage('role')}}
+            </div>
+          </select>
+        </div>
+
+        <div class="form-group" [ngClass]="errorClasses('enabled')">
+          <div class="form-check form-check-inline">
+            <input type="checkbox" id="enabled" class="form-check-input" formControlName="enabled">
+            <label class="form-check-label" for="enabled">Enabled</label>
+          </div>
+          <div class="help-block form-text with-errors form-control-feedback" *ngIf="controlHasErrors('enabled')">
+            {{controlValidateMessage('enabled')}}
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" type="submit" [disabled]="requestInProgress">Update user</button>
+          <button class="btn btn-secondary" type="button" (click)="clear()">Clear</button>
+        </div>
+
+        <div class="error">
+          <div *ngIf="valueExists" class="alert alert-danger">User with current name already exists!</div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

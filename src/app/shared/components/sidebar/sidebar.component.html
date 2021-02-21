@@ -1,0 +1,57 @@
+<div class="logo-w">
+  <a class="logo" routerLink="/">
+    <div class="logo-element"></div>
+    <div class="logo-label">
+      Some logo
+    </div>
+  </a>
+</div>
+
+<ul class="main-menu" #mainMenu>
+  <ng-container *ngFor="let item of menuItems">
+    <li *ngIf="item.type === 'sub-header'" class="sub-header">
+      <span>{{item.title}}</span>
+    </li>
+    <li *ngIf="item.type === 'menu-item' && isVisible(item.requiredRole)" [ngClass]="{'has-sub-menu': item.subMenu && item.subMenu.links && item.subMenu.links.length > 0}"
+        (mouseenter)="onMenuItemMouseEnter($event, item)"
+        (mouseleave)="onMenuItemMouseLeave($event, item)">
+      <a href="javascript:void(0)" (click)="navigateTo(item)">
+        <div *ngIf="item.icon" class="icon-w">
+          <div [ngClass]="getIconClass(item)"></div>
+        </div>
+        <span>{{item.title}}</span>
+      </a>
+
+      <div *ngIf="item.subMenu && item.subMenu.links && item.subMenu.links.length > 0" class="sub-menu-w">
+        <div class="sub-menu-header" *ngIf="item.subMenu.title">
+          {{item.title}}
+        </div>
+
+        <div class="sub-menu-icon" *ngIf="item.subMenu.icon">
+          <i [ngClass]="getIconClass(item.subMenu)"></i>
+        </div>
+
+        <div class="sub-menu-i">
+          <ul class="sub-menu">
+            <ng-container *ngFor="let subItem of item.subMenu.links">
+              <li *ngIf="isVisible(subItem.requiredRole)">
+                <a href="javascript:void(0)" (click)="navigateTo(subItem)">
+                  {{subItem.title}}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ng-container>
+
+  <!--<li>-->
+  <!--<a routerLink="/panel/downloads/doc">-->
+  <!--<div class="icon-w">-->
+  <!--<div class="os-icon os-icon-layout"></div>-->
+  <!--</div>-->
+  <!--<span>Download</span>-->
+  <!--</a>-->
+  <!--</li>-->
+</ul>

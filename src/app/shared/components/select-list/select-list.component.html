@@ -1,0 +1,23 @@
+<div [ngStyle]="{'position': 'relative'}" [ngClass]="{'error': fc.touched && !fc.valid}">
+  <div class="form-control" (click)="onInputFocus($event)">
+    <ng-container *ngIf="!selectValue">Please Select...</ng-container>
+    <ng-container *ngIf="selectValue">{{selectValue}}</ng-container>
+  </div>
+  <div class="item-container" *ngIf="showMerchants" #itemsContainer>
+    <div>
+      <input
+        class="form-control"
+        (click)="$event.stopPropagation()"
+        (change)="onInputChange()"
+        [(ngModel)]="value"
+        (ngModelChange)="hideItem()"
+      >
+    </div>
+    <div class="div-padding">
+      <ng-container *ngFor="let merchant of values | filter : value">
+        <div *ngIf="merchant.id" [ngClass]="{'selected': selectValue === merchant.label}" class="item" (click)="selected($event, merchant)">{{merchant.label}}</div>
+        <div [ngClass]="{'hide-item': showItem, 'selected': selectValue === merchant.label}" *ngIf="!merchant.id" class="header-item" (click)="$event.stopPropagation()">{{merchant.label}}</div>
+      </ng-container>
+    </div>
+  </div>
+</div>

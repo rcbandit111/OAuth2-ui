@@ -1,0 +1,13 @@
+<nav class="top-bar color-scheme-transparent">
+  <div class="top-menu-controls">
+    <button class="mr-2 mb-2 btn btn-primary" [routerLink]="['preferences', 'reset-password']"><i class="fa fa-user"></i> Preferences</button>
+    <button class="mr-2 mb-2 btn btn-primary" (click)="logout()"><i class="fa fa-sign-out"></i> Log out</button>
+  </div>
+</nav>
+<ul class="breadcrumb">
+  <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+  <li class="breadcrumb-item" *ngFor="let item of breadcrumbService.items">
+    <a *ngIf="item.slug" [routerLink]="item.slug">{{item.name}}</a>
+    <span *ngIf="!item.slug">{{item.name}}</span>
+  </li>
+</ul>

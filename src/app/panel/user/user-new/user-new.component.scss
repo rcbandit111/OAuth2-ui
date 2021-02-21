@@ -1,0 +1,36 @@
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 60px;
+  grid-row-gap: 15px;
+
+  padding: 20px;
+
+grid-template-areas:
+  ". id       id        ."
+  ". name     name      ."
+  ". type     type      ."
+  ". created  created   ."
+  ". btns     btns      ."
+  ". err      err       .";
+
+}
+.created-on {
+  grid-area: created;
+}
+.id {
+  grid-area: id;
+}
+.name {
+  grid-area: name;
+}
+.type {
+  grid-area: type;
+}
+
+.btn-row {
+  grid-area: btns;
+}
+.error {
+  grid-area: err;
+}

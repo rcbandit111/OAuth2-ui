@@ -1,0 +1,17 @@
+<div [ngStyle]="{'position': 'relative'}" [ngClass]="{'error': fc.touched && !fc.valid}">
+  <div class="form-control" (click)="onInputFocus()">
+    <ng-container *ngIf="!selectValue">Please Select...</ng-container>
+    <ng-container *ngIf="selectValue">{{selectValue}}</ng-container>
+  </div>
+  <div class="item-container" *ngIf="showOptions" #itemsContainer>
+    <div>
+      <input type="text" class="form-control"
+             (click)="$event.stopPropagation()"
+             (change)="onInputChange()"
+             [(ngModel)]="value">
+    </div>
+    <div class="item-wrapper">
+      <div class="item" *ngFor="let option of values | filter : value" [ngClass]="{'selected': selectValue === (option.label || option.id)}" (click)="selectedItem($event, option)">{{option.label || option.id}}</div>
+    </div>
+  </div>
+</div>

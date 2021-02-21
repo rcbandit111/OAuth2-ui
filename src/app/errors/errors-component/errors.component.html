@@ -1,0 +1,12 @@
+<div class="big-error-w">
+  <ng-container *ngIf="data?.error !== 404">
+    <h1>500</h1>
+    <h5>Internal Server Error</h5>
+    <h4>Oops, Something is broken...</h4>
+  </ng-container>
+  <ng-container *ngIf="data?.error === 404">
+    <h1>404</h1>
+    <h5>Page not Found</h5>
+    <h4>Oops, Something went missing...</h4>
+  </ng-container>
+</div>
